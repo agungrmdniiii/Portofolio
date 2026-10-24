@@ -877,6 +877,71 @@
 
   .project-gallery[aria-describedby="hint-sobatdagang"] .project-shot a { aspect-ratio: 16 / 9; }
 
+
+  /* Requested CTA motion and responsive sizing; preserve existing button colors. */
+  html { scroll-padding-top: 72px; }
+  .hero { min-height: 100svh; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); max-width: 1600px; margin-inline: auto; }
+  .hero-left, .hero-right, .about-text, .about-stats, .contact-left, .contact-right { min-width: 0; }
+  .avatar-frame { width: min(100%, 420px); height: auto; aspect-ratio: 1; flex-shrink: 0; }
+  .hero-badge { max-width: 100%; overflow-wrap: anywhere; }
+  .hero-cta .btn, .contact-left .btn { min-height: 48px; justify-content: center; }
+  .btn { transition: transform 0.1s, box-shadow 0.1s; max-width: 100%; text-align: center; box-shadow: none; }
+  .hero-cta .btn, .contact-left .btn, #projects .proj-link {
+    transition: transform .1s, box-shadow .1s;
+  }
+  .hero-cta .btn:hover, .contact-left .btn:hover, #projects .proj-link:hover {
+    transform: translateY(-1px);
+    box-shadow: none;
+  }
+  .hero-cta .btn-primary:hover, .contact-left .btn-primary:hover { background: var(--black); }
+  .hero-cta .btn:active, .contact-left .btn:active { transform: translateY(0); box-shadow: none; }
+  .btn:focus-visible, .nav-links a:focus-visible, .nav-toggle:focus-visible, .mobile-menu a:focus-visible { outline: 2px solid var(--black); outline-offset: 3px; }
+  .nav-links a { border-left: 1px solid var(--black); }
+  .nav-toggle { width: 44px; height: 44px; }
+  .nav-logo { min-width: 0; }
+  .section-body, #projects .proj-grid { max-width: 1600px; margin-inline: auto; }
+  .section-header { padding-inline: max(4rem, calc((100vw - 1600px) / 2 + 4rem)); }
+  .contact-link { min-height: 48px; overflow-wrap: anywhere; }
+  .proj-type, .skill-tag { max-width: 100%; overflow-wrap: anywhere; }
+  .project-media .project-gallery--portrait .project-shot { max-width: 100%; }
+  .footer-copy { overflow-wrap: anywhere; }
+  @media (min-width: 1600px) {
+    nav, footer { padding-inline: max(2rem, calc((100vw - 1600px) / 2 + 2rem)); }
+  }
+  @media (max-width: 1024px) {
+    .hero { grid-template-columns: minmax(0, 1fr); }
+    .avatar-frame { width: min(100%, 280px); }
+    .section-header { padding-inline: 2.5rem; }
+  }
+  @media (max-width: 900px) {
+    #projects .proj-card { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  }
+  @media (max-width: 768px) {
+    nav { gap: 16px; }
+    .nav-logo { font-size: clamp(.85rem, 3.5vw, 1.1rem); }
+    .avatar-frame { width: min(100%, 240px); }
+    .section-header { padding-inline: 1.25rem; }
+    #projects .proj-card { padding-inline: 1.25rem; }
+    .mobile-menu { max-height: calc(100svh - 56px); overflow-y: auto; }
+    .mobile-menu a { border-top: 1px solid var(--black); min-height: 48px; }
+    .contact-link { font-size: 12px; letter-spacing: .02em; padding: 16px 12px; gap: 12px; }
+    .contact-link-icon { width: 32px; height: 32px; }
+    footer { padding-inline: 1.25rem; }
+  }
+  @media (max-width: 600px) {
+    .about-stats { grid-template-columns: minmax(0, 1fr); }
+    .hero-name { font-size: clamp(2.2rem, 10vw, 3.5rem); }
+    .hero-tagline { font-size: 14px; letter-spacing: .08em; }
+    .hero-cta { flex-direction: column; }
+    .hero-cta .btn { width: 100%; }
+    #projects .proj-title { font-size: clamp(1.65rem, 7vw, 2.5rem); overflow-wrap: anywhere; }
+    #projects .proj-footer { gap: 12px; }
+    .project-media .project-shot figcaption { padding-right: 144px; overflow-wrap: anywhere; }
+    .project-media .gallery-controls { gap: 0; }
+    .project-media .gallery-controls button { flex: 0 0 44px; }
+  }
+
+
 </style>
 </head>
 <body>
@@ -890,7 +955,7 @@
     <li><a href="#skills">Skills</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+  <button class="nav-toggle" id="navToggle" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="mobileMenu">
     <span></span>
     <span></span>
     <span></span>
@@ -998,25 +1063,25 @@
         <div class="project-gallery" role="region" aria-label="Screenshot Snapbook Studio" aria-describedby="hint-snapbook">
           <figure class="project-shot">
             <a href="assets/snapbook/01-beranda.png" target="_blank" rel="noopener noreferrer" aria-label="Buka screenshot Beranda Snapbook Studio ukuran penuh">
-              <img src="assets/snapbook/01-beranda.png" alt="Beranda — Snapbook Studio" loading="eager" decoding="async">
+              <img src="assets/snapbook/01-beranda.png" alt="Beranda — Snapbook Studio" loading="eager" decoding="async" width="1920" height="1080">
             </a>
             <figcaption>Beranda</figcaption>
           </figure>
           <figure class="project-shot" hidden>
             <a href="assets/snapbook/02-paket-foto.png" target="_blank" rel="noopener noreferrer" aria-label="Buka screenshot Paket foto Snapbook Studio ukuran penuh">
-              <img src="assets/snapbook/02-paket-foto.png" alt="Paket foto — Snapbook Studio" loading="eager" decoding="async">
+              <img src="assets/snapbook/02-paket-foto.png" alt="Paket foto — Snapbook Studio" loading="eager" decoding="async" width="1920" height="1080">
             </a>
             <figcaption>Paket foto</figcaption>
           </figure>
           <figure class="project-shot" hidden>
             <a href="assets/snapbook/03-pilih-jadwal.png" target="_blank" rel="noopener noreferrer" aria-label="Buka screenshot Pilih jadwal Snapbook Studio ukuran penuh">
-              <img src="assets/snapbook/03-pilih-jadwal.png" alt="Pilih jadwal — Snapbook Studio" loading="eager" decoding="async">
+              <img src="assets/snapbook/03-pilih-jadwal.png" alt="Pilih jadwal — Snapbook Studio" loading="eager" decoding="async" width="1920" height="1080">
             </a>
             <figcaption>Pilih jadwal</figcaption>
           </figure>
           <figure class="project-shot" hidden>
             <a href="assets/snapbook/04-galeri.png" target="_blank" rel="noopener noreferrer" aria-label="Buka screenshot Galeri Snapbook Studio ukuran penuh">
-              <img src="assets/snapbook/04-galeri.png" alt="Galeri — Snapbook Studio" loading="eager" decoding="async">
+              <img src="assets/snapbook/04-galeri.png" alt="Galeri — Snapbook Studio" loading="eager" decoding="async" width="1920" height="1080">
             </a>
             <figcaption>Galeri</figcaption>
           </figure>
@@ -1055,25 +1120,25 @@
         <div class="project-gallery" role="region" aria-label="Screenshot SobatDagang" aria-describedby="hint-sobatdagang">
           <figure class="project-shot">
             <a href="assets/sobatdagang/01-dashboard.png" target="_blank" rel="noopener noreferrer" aria-label="Buka screenshot Dashboard SobatDagang ukuran penuh">
-              <img src="assets/sobatdagang/01-dashboard.png" alt="Dashboard — SobatDagang" loading="eager" decoding="async">
+              <img src="assets/sobatdagang/01-dashboard.png" alt="Dashboard — SobatDagang" loading="eager" decoding="async" width="1920" height="1080">
             </a>
             <figcaption>Dashboard</figcaption>
           </figure>
           <figure class="project-shot" hidden>
             <a href="assets/sobatdagang/02-kasir.png" target="_blank" rel="noopener noreferrer" aria-label="Buka screenshot Kasir SobatDagang ukuran penuh">
-              <img src="assets/sobatdagang/02-kasir.png" alt="Kasir — SobatDagang" loading="eager" decoding="async">
+              <img src="assets/sobatdagang/02-kasir.png" alt="Kasir — SobatDagang" loading="eager" decoding="async" width="1920" height="1080">
             </a>
             <figcaption>Kasir</figcaption>
           </figure>
           <figure class="project-shot" hidden>
             <a href="assets/sobatdagang/03-inventori.png" target="_blank" rel="noopener noreferrer" aria-label="Buka screenshot Inventori SobatDagang ukuran penuh">
-              <img src="assets/sobatdagang/03-inventori.png" alt="Inventori — SobatDagang" loading="eager" decoding="async">
+              <img src="assets/sobatdagang/03-inventori.png" alt="Inventori — SobatDagang" loading="eager" decoding="async" width="1920" height="1080">
             </a>
             <figcaption>Inventori</figcaption>
           </figure>
           <figure class="project-shot" hidden>
             <a href="assets/sobatdagang/04-laporan.png" target="_blank" rel="noopener noreferrer" aria-label="Buka screenshot Laporan SobatDagang ukuran penuh">
-              <img src="assets/sobatdagang/04-laporan.png" alt="Laporan — SobatDagang" loading="eager" decoding="async">
+              <img src="assets/sobatdagang/04-laporan.png" alt="Laporan — SobatDagang" loading="eager" decoding="async" width="1920" height="1080">
             </a>
             <figcaption>Laporan</figcaption>
           </figure>
@@ -1111,25 +1176,25 @@
         <div class="project-gallery project-gallery--portrait" role="region" aria-label="Screenshot Duit Aing" aria-describedby="hint-duit-aing">
           <figure class="project-shot">
             <a href="assets/duit-aing/01-beranda.png" target="_blank" rel="noopener noreferrer" aria-label="Buka screenshot Beranda Duit Aing ukuran penuh">
-              <img src="assets/duit-aing/01-beranda.png" alt="Beranda — Duit Aing" loading="eager" decoding="async">
+              <img src="assets/duit-aing/01-beranda.png" alt="Beranda — Duit Aing" loading="eager" decoding="async" width="1080" height="2400">
             </a>
             <figcaption>Beranda</figcaption>
           </figure>
           <figure class="project-shot" hidden>
             <a href="assets/duit-aing/02-transaksi.png" target="_blank" rel="noopener noreferrer" aria-label="Buka screenshot Transaksi Duit Aing ukuran penuh">
-              <img src="assets/duit-aing/02-transaksi.png" alt="Transaksi — Duit Aing" loading="eager" decoding="async">
+              <img src="assets/duit-aing/02-transaksi.png" alt="Transaksi — Duit Aing" loading="eager" decoding="async" width="1080" height="2400">
             </a>
             <figcaption>Transaksi</figcaption>
           </figure>
           <figure class="project-shot" hidden>
             <a href="assets/duit-aing/03-laporan.png" target="_blank" rel="noopener noreferrer" aria-label="Buka screenshot Laporan Duit Aing ukuran penuh">
-              <img src="assets/duit-aing/03-laporan.png" alt="Laporan — Duit Aing" loading="eager" decoding="async">
+              <img src="assets/duit-aing/03-laporan.png" alt="Laporan — Duit Aing" loading="eager" decoding="async" width="1080" height="2400">
             </a>
             <figcaption>Laporan</figcaption>
           </figure>
           <figure class="project-shot" hidden>
             <a href="assets/duit-aing/04-vina-offline.png" target="_blank" rel="noopener noreferrer" aria-label="Buka screenshot Vina Offline Duit Aing ukuran penuh">
-              <img src="assets/duit-aing/04-vina-offline.png" alt="Vina Offline — Duit Aing" loading="eager" decoding="async">
+              <img src="assets/duit-aing/04-vina-offline.png" alt="Vina Offline — Duit Aing" loading="eager" decoding="async" width="1080" height="2400">
             </a>
             <figcaption>Vina Offline</figcaption>
           </figure>
@@ -1268,25 +1333,24 @@
   const navToggle = document.getElementById('navToggle');
   const mobileMenu = document.getElementById('mobileMenu');
 
-  navToggle.addEventListener('click', () => {
-    navToggle.classList.toggle('active');
-    mobileMenu.classList.toggle('open');
-  });
-
-  // Close mobile menu when a link is clicked
+  function setMenuOpen(open) {
+    navToggle.classList.toggle('active', open);
+    mobileMenu.classList.toggle('open', open);
+    navToggle.setAttribute('aria-expanded', String(open));
+    navToggle.setAttribute('aria-label', open ? 'Tutup menu navigasi' : 'Buka menu navigasi');
+  }
+  navToggle.addEventListener('click', () => setMenuOpen(!mobileMenu.classList.contains('open')));
   document.querySelectorAll('.mobile-nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-      navToggle.classList.remove('active');
-      mobileMenu.classList.remove('open');
-    });
+    link.addEventListener('click', () => setMenuOpen(false));
   });
-
-  // Close mobile menu on resize to desktop
-  window.addEventListener('resize', () => {
-    if (window.innerWidth > 768) {
-      navToggle.classList.remove('active');
-      mobileMenu.classList.remove('open');
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && mobileMenu.classList.contains('open')) {
+      setMenuOpen(false);
+      navToggle.focus();
     }
+  });
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) setMenuOpen(false);
   });
 
   // ===== SCROLL REVEAL =====
